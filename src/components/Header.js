@@ -6,8 +6,14 @@ import { WiDaySunny } from "react-icons/wi";
 import { FiSearch } from "react-icons/fi";
 import { HiLocationMarker } from "react-icons/hi";
 import Button from "./common/Button";
-export default function Header() {
+export default function Header({
+  setSearch,
+  setLocation,
+  setFullTimeOnly,
+  handleSubmit,
+}) {
   const [darkMode, setDarkMode] = useState(false);
+
   return (
     <div className="nav-background">
       <div className="container">
@@ -16,17 +22,17 @@ export default function Header() {
             <PrimaryText className="h1 text-light">devjobs</PrimaryText>
           </div>
           <div className="dark-mode">
-            <label for="dark-mode">
+            <label htmlFor="dark-mode">
               <WiDaySunny size={30} color={darkMode ? "#26193d" : "white"} />
             </label>
-            <label class="switch">
+            <label className="switch">
               <input
                 type="checkbox"
                 onChange={() => setDarkMode(!darkMode)}
                 id="dark-mode"
                 className="dark-mode-checkbox"
               />
-              <span class="slider round"></span>
+              <span className="slider round"></span>
             </label>
             <IoIosCloudyNight
               size={30}
@@ -39,19 +45,28 @@ export default function Header() {
             <FiSearch size={40} color={"#26193d"} />
             <input
               id="search"
-              placeholder="Filter by title, companies, expertise"
+              placeholder="Filter by title, companies, expertise..."
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           <div className="filter col">
             <HiLocationMarker size={40} color={"#26193d"} />
-            <input id="location" placeholder="Filter By Location..." />
+            <input
+              id="location"
+              placeholder="Filter By Location..."
+              onChange={(e) => setLocation(e.target.value)}
+            />
           </div>
           <div className="search-button col">
             <input id="full-time" type="checkbox" />
-            <label for="full-time" id="full-time-label">
+            <label
+              htmlFor="full-time"
+              id="full-time-label"
+              onChange={() => setFullTimeOnly(true)}
+            >
               Full Time Only
             </label>
-            <Button title="Search" onClick={() => console.log("Hello World")} />
+            <Button title="Search" onClick={() => handleSubmit()} />
           </div>
         </div>
       </div>
