@@ -4,14 +4,6 @@
   --primary-color: #4e3679;
 }
 
-.dark {
-  filter: invert(100%) hue-rotate(180deg);
-}
-
-.invert {
-  filter: invert(100%) hue-rotate(180deg) !important;
-}
-
 body {
   background-color: #f1f1f1 !important;
   padding-bottom: 50px !important;
@@ -50,6 +42,12 @@ body {
   position: relative;
   border-radius: 7px;
   background-color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.job:hover {
+  transform: scale(1.02);
 }
 
 .jobs {
@@ -173,76 +171,16 @@ body {
   margin-bottom: 150px;
 }
 
-.dark-mode {
-  display: flex;
-}
-.dark-mode > * {
-  margin: 0 5px;
-}
-
-#dark-mode {
-  display: none;
-}
-
-.switch {
-  position: relative;
-  display: block;
-  width: 60px;
-  height: 30px;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: white;
-  transition: 0.5s;
-}
-
-.slider::before {
-  position: absolute;
-  content: "";
-  bottom: 10px;
-  background-color: var(--primary-color);
-  transition: 0.5s;
-}
-
-input:checked + .slider {
-  background-color: #26193d;
-}
-
-input:checked + .slider:before {
-  transform: translateX(30px);
-  background: white;
-}
-
-.slider.round {
-  border-radius: 45px;
-}
-
-.slider.round:before {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-}
-
-#day {
-  fill: white;
-}
-
 .filters {
   width: 100%;
-  margin-top: 20px;
   height: 80px;
   background-color: white;
   border-radius: 5px;
   z-index: 2;
   overflow: hidden;
+  position: relative;
+  margin-top: -100px;
+  top: -90px;
 }
 
 .search {
@@ -295,7 +233,49 @@ input:checked + .slider:before {
   margin-left: 5px;
 }
 
-a {
+.dev-logo {
   color: white !important;
+  text-decoration: none !important;
+}
+
+.custom-container {
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+}
+
+.upper {
+  display: flex;
+  justify-self: center;
+  height: 180px;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  margin: auto;
+  margin-top: -100px;
+  top: -90px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.details-company-logo {
+  width: 180px;
+  height: 180px;
+}
+
+.company-details {
+  margin-left: 50px;
+}
+
+.company-site-button {
+  margin-right: 50px;
+}
+
+.job-body {
+  background-color: white;
+  margin-top: -50px;
+  padding: 50px;
+  border-radius: 5px;
+}
+
+a {
   text-decoration: none !important;
 }

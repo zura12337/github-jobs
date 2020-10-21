@@ -4,6 +4,7 @@ import List from "./List";
 import ScrollToTop from "./common/ScrollToTop";
 import Button from "./common/Button";
 import { PrimaryText } from "./common/Text";
+import Search from "./Search";
 
 export default function Jobs({ jobs, loading, getJobs, jobsError }) {
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function Jobs({ jobs, loading, getJobs, jobsError }) {
         <>
           <ScrollToTop />
           <div className="container">
+            <Search />
             <List jobs={jobs} />
             {loading && (
               <div className="loading">
