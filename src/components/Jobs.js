@@ -16,18 +16,15 @@ export default function Jobs() {
   const [fullTimeOnly, setFullTimeOnly] = useState(false);
   const [filter, setFilter] = useState(false);
 
-  const getJobs = async () => {
+  const getJobs = async (e) => {
     setLoading(true);
     let result;
-    if (search || location || fullTimeOnly) {
+    if (window.location.search) {
       setJobs([]);
       const url =
-        "https://jobs.github.com/positions.json?search=" +
-        (search ? search : "") +
-        ("&full_time=" + fullTimeOnly) +
-        "&location=" +
-        (location ? location : "");
+        "https://jobs.github.com/positions.json" + window.location.search;
       result = await axios.get(url);
+      console.log(url);
       setFilter(true);
     } else {
       result = await axios.get(
