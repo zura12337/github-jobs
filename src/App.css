@@ -259,6 +259,9 @@ body {
 .details-company-logo {
   width: 180px;
   height: 180px;
+  padding: 20px;
+  object-fit: contain;
+  background: white;
 }
 
 .company-details {

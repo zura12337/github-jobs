@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Jobs from "./components/Jobs";
 import Header from "./components/Header";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import axios from "axios";
 import Job from "./components/Job";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [jobs, setJobs] = useState([]);
@@ -50,15 +51,26 @@ function App() {
   };
 
   const getJob = async (id) => {
-    const result = await axios.get(
-      "https://jobs.github.com/positions.json?&page=" + page
-    );
-    if (result.data.status != 200) console.log("Server Error");
-    result.data.forEach((job) => {
-      if (job.id === id) {
-        setJob(job);
+    if (id.length < 36) {
+      window.location.pathname = "/not-found";
+    }
+    let page = 1;
+    const interval = setInterval(async () => {
+      const result = await axios.get(
+        "https://jobs.github.com/positions.json?&page=" + page
+      );
+      page++;
+      result.data.forEach((job) => {
+        if (job.id === id) {
+          setJob(job);
+          clearInterval(interval);
+        }
+      });
+      if (result.data.length === 0) {
+        window.location.pathname = "/not-found";
+        clearInterval(interval);
       }
-    });
+    }, 1000);
   };
 
   return (
@@ -84,9 +96,10 @@ function App() {
             getJobs={getJobs}
           />
         </Route>
-        <Route path="*" exact>
-          <h1>Not Found</h1>
+        <Route path="/not-found" exact>
+          <NotFound />
         </Route>
+        <Redirect from="*" exact to="/not-found"></Redirect>
       </Switch>
     </>
   );
