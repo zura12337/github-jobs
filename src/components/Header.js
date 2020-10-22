@@ -1,9 +1,6 @@
 import React from "react";
 import { PrimaryText } from "./common/Text";
 
-import { FiSearch } from "react-icons/fi";
-import { HiLocationMarker } from "react-icons/hi";
-import Button from "./common/Button";
 export default function Header({ handleSubmit }) {
   return (
     <div className="nav-background">

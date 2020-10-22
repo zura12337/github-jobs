@@ -2,7 +2,6 @@ import React from "react";
 import { SecondaryText, PrimaryText } from "./common/Text";
 
 import moment from "moment";
-import { Link } from "react-router-dom";
 
 const List = ({ jobs }) => {
   return (
@@ -12,7 +11,7 @@ const List = ({ jobs }) => {
           var offset = moment(job.created_at).fromNow();
           var url = "/jobs/" + job.id;
           return (
-            <a key={job.id} href={url}>
+            <a key={job.id} to={url}>
               <div className="job">
                 <div className="image">
                   {job.company_logo ? (
